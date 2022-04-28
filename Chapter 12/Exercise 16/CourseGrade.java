@@ -1,9 +1,12 @@
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectOutput;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
+import java.io.Serializable;
 
 public class CourseGrade {
     public static void main(String[] args)
@@ -11,6 +14,8 @@ public class CourseGrade {
         boolean end = true;
         Scanner input = new Scanner(System.in);
         File file;
+        FileOutputStream outputFile;
+        ObjectOutputStream objectOutputFile;
         String filename;
         GradeBook gradeBook = new GradeBook();
         do {
@@ -31,6 +36,22 @@ public class CourseGrade {
                     System.out.print("Enter file name: ");
                     filename = input.nextLine();
                     file = new File(filename);
+                    try {
+                        outputFile = new FileOutputStream(filename);
+                        if(!file.exists()){
+                            objectOutputFile = new ObjectOutputStream(outputFile);
+                            objectOutputFile.writeObject(gradeBook);
+                        }
+                        else{
+                            objectOutputFile = new ObjectOutputStream(outputFile);
+                            objectOutputFile.writeObject(gradeBook);
+                        }
+                        objectOutputFile.close();
+                        outputFile.close();
+                    } 
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 0:
                     end = false;

@@ -22,6 +22,7 @@ public class Bowling {
             System.out.printf("Frame #%d\n",framesPlayed);
             for (Player player : players) {
                 while(remainingthrows!=0){
+                    input.nextLine();
                     randomNumber = rand.nextInt(remainingPins+1);
                     remainingPins-=randomNumber;
                     scorePerFrame+=randomNumber;

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class GradeBook implements Serializable{
     private int[][] grades = new int[12][5];
-    private Scanner classInput = new Scanner(System.in);
+    private transient Scanner classInput = new Scanner(System.in);
 
     public void getGrades(){
         int id =0;
